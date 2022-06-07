@@ -14,10 +14,6 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Testa Rota login', () => {
-  /**
-   * Exemplo do uso de stubs com tipos
-   */
-
   let chaiHttpResponse: Response;
 
   before(async () => {
@@ -42,5 +38,19 @@ describe('Testa Rota login', () => {
     expect(chaiHttpResponse.status).to.be.equal(200);
     expect(chaiHttpResponse.body).to.have.property('user');
     expect(chaiHttpResponse.body).to.have.property('token');
+  });
+
+  it('Verifica se ao tentar fazer login com um email incorreto recebe mensagem e status corretos', async () => {
+    chaiHttpResponse = await chai
+      .request(app)
+      .post('/login')
+      .send({
+        email: '',
+        password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW',
+      });
+
+    expect(chaiHttpResponse.status).to.be.equal(401);
+    expect(chaiHttpResponse.body).to.have.property('message');
+    expect(chaiHttpResponse.body.message).to.be.equal('Incorrect email or password');
   });
 });
