@@ -6,6 +6,7 @@ const router = Router();
 
 router.post(
   '/login',
+  LoginMiddlewares.verifyPassword,
   LoginMiddlewares.verifyEmail,
   loginController,
 );

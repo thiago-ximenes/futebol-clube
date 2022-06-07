@@ -21,4 +21,21 @@ export default class LoginMiddlewares {
 
     return next();
   }
+
+  public static async verifyPassword(req: Request, res: Response, next: NextFunction) {
+    const { email, password } = req.body;
+    const user = await Users.findOne({
+      where: {
+        email,
+      },
+    });
+
+    if (user?.password !== password) {
+      return res.status(401).json({
+        message: 'Incorrect email or password',
+      });
+    }
+
+    return next();
+  }
 }
