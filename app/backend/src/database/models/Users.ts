@@ -1,13 +1,19 @@
 import { INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
-// import OtherModel from './OtherModel';
 
-class Users extends Model {
-  id!: number;
-  username!: string;
-  role!: string;
-  email!: string;
-  password!: string;
+export interface IUser {
+  id: number;
+  username: string;
+  role: string;
+  email: string;
+  password?: string;
+}
+class Users extends Model implements IUser {
+  public id!: number;
+  public username!: string;
+  public role!: string;
+  public email!: string;
+  public password?: string;
 }
 
 Users.init({

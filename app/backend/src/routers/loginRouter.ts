@@ -7,8 +7,9 @@ const router = Router();
 router.post(
   '/login',
   LoginMiddlewares.isEmailEmpty,
-  LoginMiddlewares.verifyPassword,
+  LoginMiddlewares.isPasswordEmpty,
   LoginMiddlewares.verifyEmail,
+  LoginMiddlewares.verifyPassword,
   loginController,
 );
 
