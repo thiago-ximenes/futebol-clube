@@ -12,7 +12,8 @@ export default class Jwt {
     return sign({ user }, this._jwtSecret, this._jwtConfig);
   }
 
-  public static async verify(token: string) {
-    return verify(token, this._jwtSecret);
+  public static async verify(token: string): Promise<string | object | Buffer> {
+    const payload = verify(token, this._jwtSecret);
+    return payload;
   }
 }

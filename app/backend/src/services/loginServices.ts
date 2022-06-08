@@ -32,4 +32,9 @@ export default class LoginServices {
     const newToken = await Jwt.createToken(user);
     return newToken;
   }
+
+  public static async verifyToken(token: string) {
+    const user = await Jwt.verify(token);
+    return user;
+  }
 }
