@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import MatchesMiddleware from '../middlewares/matchesMiddleware';
+import matchesMiddleware from '../middlewares/matchesMiddleware';
 import matchesController from '../controllers/matchesController';
 
 const router = Router();
@@ -11,7 +11,8 @@ router.get(
 
 router.post(
   '/matches',
-  MatchesMiddleware.sameTeam,
+  matchesMiddleware.checkIfTeamExists,
+  matchesMiddleware.sameTeam,
   matchesController.createMatch,
 );
 
