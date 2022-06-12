@@ -26,7 +26,7 @@ describe('Testa Rota teams', () => {
     (Teams.findOne as sinon.SinonStub).restore();
   })
 
-  it('Verifica se é possível fazer login', async () => {
+  it('Verifica se retorna todos os times', async () => {
     chaiHttpResponse = await chai
       .request(app)
       .get('/teams')
@@ -34,5 +34,17 @@ describe('Testa Rota teams', () => {
     expect(chaiHttpResponse.status).to.be.equal(200);
     expect(chaiHttpResponse.body).to.have.property('id');
     expect(chaiHttpResponse.body).to.have.property('teamName');
+    expect(chaiHttpResponse.body).to.be.equal(teamsMock);
+  });
+
+  it('Verifica se um time específico', async () => {
+    chaiHttpResponse = await chai
+      .request(app)
+      .get('/teams/1')
+
+    expect(chaiHttpResponse.status).to.be.equal(200);
+    expect(chaiHttpResponse.body).to.have.property('id');
+    expect(chaiHttpResponse.body).to.have.property('teamName');
+    expect(chaiHttpResponse.body).to.be.equal(teamsMock[0]);
   });
 });

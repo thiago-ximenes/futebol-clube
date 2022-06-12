@@ -8,4 +8,9 @@ router.get(
   TeamsController.getAllTeams,
 );
 
+router.get(
+  '/teams/:id',
+  TeamsController.getById,
+);
+
 export default router;
