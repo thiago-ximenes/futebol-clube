@@ -12,8 +12,17 @@ export default class MatchesController {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress } = req.body;
 
     const result = await MatchesServices.createMatch({
-      homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress });
+      homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress,
+    });
 
     return res.status(201).json(result);
+  }
+
+  static async finishMatch(req: Request, res: Response) {
+    const { id } = req.params;
+
+    await MatchesServices.finishMatch(Number(id));
+
+    return res.status(200).json({ message: 'Finished' });
   }
 }

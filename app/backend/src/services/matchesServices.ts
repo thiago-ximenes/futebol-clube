@@ -18,4 +18,8 @@ export default class MatchesServices {
   static async createMatch(match: any) {
     return Matches.create(match);
   }
+
+  static async finishMatch(id: number) {
+    return Matches.update({ inProgress: false }, { where: { id } });
+  }
 }
