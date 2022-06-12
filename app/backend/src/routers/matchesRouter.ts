@@ -8,4 +8,9 @@ router.get(
   matchesController.getAllMatches,
 );
 
+router.post(
+  '/matches',
+  matchesController.createMatch,
+);
+
 export default router;

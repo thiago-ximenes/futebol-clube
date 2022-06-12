@@ -14,4 +14,8 @@ export default class MatchesServices {
   static async getById(id: number) {
     return Matches.findByPk(id);
   }
+
+  static async createMatch(match: any) {
+    return Matches.create(match);
+  }
 }
