@@ -22,4 +22,8 @@ export default class MatchesServices {
   static async finishMatch(id: number) {
     return Matches.update({ inProgress: false }, { where: { id } });
   }
+
+  static async updateMatch(id: number, homeTeamGoals: number, awayTeamGoals: number) {
+    return Matches.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+  }
 }
